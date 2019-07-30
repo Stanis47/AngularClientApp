@@ -1,0 +1,57 @@
+<div class="jumbotron" style="max-width:1000px; margin: auto">
+    <h1 
+        class="display-6">{{programmer.firstName}} {{programmer.lastName}}
+    </h1>
+
+    <hr class="my-4">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-auto">
+                <mdb-card div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                    <img src={{programmer.imageUrl}} style="height:200px;">
+
+                    <mdb-card-body>
+                        <mdb-card-title>
+    
+                        </mdb-card-title>
+                        <mdb-card-text>
+                            <mdb-icon fas icon="user"></mdb-icon>
+                            Age: {{programmer.age}} <br>
+                            <mdb-icon fas icon="phone"></mdb-icon>
+                            Phone: <br>
+                            {{programmer.phone}} <br>
+                            <mdb-icon fas icon="envelope"></mdb-icon>
+                            Email: <br>
+                            {{programmer.email}} <br>
+                        </mdb-card-text>
+                    </mdb-card-body>
+                </mdb-card> 
+            </div>
+
+            <div class="col">
+                <div class="list-group">
+                    <p *ngIf="count > 0; else noProjectsAssignedBlock" style="margin:0px auto 15px auto" class="font-weight-bold">Projects: {{count}}</p>
+                    <ng-template #noProjectsAssignedBlock><h3 style="margin: auto;">At this time {{programmer.firstName}} {{programmer.lastName}} is not working on any project</h3></ng-template>
+                    
+                    <a *ngFor="let project of projects" (click)="projectDetails(project.project.projectID)" class="list-group-item list-group-item-action flex-column align-items-start" style="padding:5px">
+                        <div class="d-flex w-1oo justify-content-between">
+                            <h5>{{project.project.name}}</h5>
+                            <small *ngIf="project.project.isCompleted">completed</small>
+                        </div>
+                        <p>
+                            {{project.project.description}}
+                        </p>
+                        <small>Created: {{project.project.dateCreated | date: "d MMM, y"}}</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <button (click)="gotoList()" mdbBtn type="button" color="primary" outline="true" mdbWavesEffect>To List</button>
+    <button (click)="updateProgrammer()" mdbBtn type="button" color="secondary" outline="true" mdbWavesEffect style="float:right">Update</button>
+    <button (click)="deleteProgrammer()" mdbBtn type="button" color="danger" outline="true" mdbWavesEffect style="float:right">Delete</button>
+</div>

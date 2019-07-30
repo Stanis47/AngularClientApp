@@ -1,0 +1,31 @@
+<form [formGroup]="projectForm" (ngSubmit)="onFormSubmit()" class="border border-light p-5" style="min-width:400px; max-width:600px; margin: 0 auto;">
+    <p class="h4 mb-4">Update Project</p>
+
+    <div class="md-form">
+        <input mdbInput mdbValidate type="text" formControlName="name" id="nam" class="form-control">
+        <label for="nam">Name</label>
+        <mdb-error *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)">Input invalid</mdb-error>
+    </div>
+
+    <div class="md-form">
+        <input mdbInput mdbValidate type="text" formControlName="description" id="des" class="form-control">
+        <label for="des">Description</label>
+        <mdb-error *ngIf="f.description.invalid && (f.description.dirty || f.description.touched)">Input invalid</mdb-error>
+    </div>
+
+    <div class="md-form">
+        <input mdbInput mdbValidate type="text" formControlName="fullDescription" id="det" class="form-control">
+        <label for="det">Detailed description</label>
+        <mdb-error *ngIf="f.fullDescription.invalid && (f.fullDescription.dirty || f.fullDescription.touched)">Input invalid</mdb-error>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md">
+            <button mdbBtn (click)="projectDetails()" color="warning" block="true" outline="true" mdbWavesEffect>Cancel</button>
+        </div>
+        <div class="col-md">
+            <button mdbBtn color="secondary" block="true" type="submit" outline="true" mdbWavesEffect>Update</button>
+        </div>
+    </div>
+</form>

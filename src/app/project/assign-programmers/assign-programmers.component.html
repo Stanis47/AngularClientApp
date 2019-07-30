@@ -1,0 +1,28 @@
+<div style="padding-left:25px">
+    <div>
+        <h2 *ngIf="selected.length == 0; else elseBlock" style="width:auto">No selected programmers. To successful assignment select at least one programmer.</h2>
+        <ng-template #elseBlock><h2 *ngIf="selected.length == 1; else evenElseBlock">Selected 1 programmer</h2></ng-template>
+        <ng-template #evenElseBlock><h2>Selected {{selected.length}} programmers</h2></ng-template>
+
+        <button (click)="projectDetails()" mdbBtn type="button" color="warning" outline="true" mdbWavesEffect>Cancel</button>
+        <button (click)="assign()" mdbBtn type="button" color="success" outline="true" mdbWavesEffect>Assign</button>
+
+        <div class="row">
+            <mdb-card *ngFor="let programmer of programmers" (click)="checkItem(programmer.programmerID)" style="margin:15px 15px 10px 15px;" class="hoverable" mdbWavesEffect>
+                <mdb-icon *ngIf="programmer.checked" fas icon="check-circle" class="deep-orange-text" size="2x" style="position:absolute;float: right;"></mdb-icon>
+
+                <div class="reframe">
+                    <img src={{programmer.imageUrl}}>
+                </div>
+
+                <mdb-card-body style="padding:5px">
+                    <mdb-card-title>
+                        <small>
+                            {{programmer.firstName}} {{programmer.lastName}}
+                         </small>
+                    </mdb-card-title>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div style="padding-left:25px">
+    <div class="row">
+        <a [routerLink]="['/programmers/add']" class="text-dark">
+            <h2 class="ml-3">
+                Add New
+                <mdb-icon fas icon="plus-square" class="green-text ml-1 mr-3 animated pulse"></mdb-icon>
+            </h2> 
+        </a>
+        <a (click)="reloadData()">
+            <h2>
+                Refresh
+                <mdb-icon fas icon="sync" class="green-text ml-1 mr-3 animated rotateIn"></mdb-icon>
+            </h2>
+        </a>
+    </div>
+    <div class="row">
+        <mdb-card *ngFor="let programmer of programmers | async"  style="margin:15px 15px 10px 15px;" class="hoverable" cascade="true" wider="true">
+            <div class="row" style="margin-top:10px; padding-left: 10px; padding-right: 5px">
+                <div class="col-auto">
+                    <div class="view view-cascade overlay waves-light" mdbWavesEffect style="width:130px;height:150px">
+                        <mdb-card-img src={{programmer.imageUrl}}></mdb-card-img>
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-auto" style="padding-left:5px">
+                    <small>Age: {{programmer.age}}</small><br>
+                    <small>Phone number:</small><br>
+                    <small>{{programmer.phone}}</small><br>
+                    <small>{{programmer.email}}</small><br>
+                </div>
+            </div>
+
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>
+                        {{programmer.firstName}}
+                        {{programmer.lastName}}
+                    </h4>    
+                </mdb-card-title>
+
+                <hr>
+
+                <mdb-card-text>
+                    
+                </mdb-card-text>
+
+                <button (click)="deleteProgrammer(programmer.programmerID)" mdbBtn type="button" color="danger" outline="true" mdbWavesEffect>Delete</button>
+                <button (click)="programmerDetails(programmer.programmerID)" mdbBtn type="button" color="info" outline="true" mdbWavesEffect>Details</button> 
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+</div>

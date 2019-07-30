@@ -1,0 +1,48 @@
+<form [formGroup]="programmerForm" (ngSubmit)="onFormSubmit()" class="border border-light p-5" style="min-width:400px; max-width:600px; margin: 0 auto;">
+    <p class="h4 mb-4">Update Programmer</p>
+  
+    <div class="md-form">
+      <mdb-icon fas icon="user-edit" class="prefix"></mdb-icon>
+      <input mdbInput mdbValidate type="text" id="fNameInput" formControlName="firstName" class="form-control" maxlength="25">
+      <label for="fNameInput" class="">First Name</label>
+      <mdb-error *ngIf="f.firstName.invalid && (f.firstName.dirty || f.firstName.touched)">Input invalid</mdb-error>
+    </div>
+
+    <div class="md-form">
+        <mdb-icon fas icon="user-edit" class="prefix"></mdb-icon>
+        <input mdbInput mdbValidate type="text" id="lNameInput" formControlName="lastName" class="form-control" maxlength="25">
+        <label for="lNameInput" class="">Last Name</label>
+        <mdb-error *ngIf="f.lastName.invalid && (f.lastName.dirty || f.lastName.touched)">Input invalid</mdb-error>
+      </div>
+  
+    <div class="md-form">
+      <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+      <input mdbInput mdbValidate type="email" id="mailInput" formControlName="email" class="form-control" maxlength="50">
+      <label for="mailInput" class="">Email</label>
+      <mdb-error *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">Input invalid</mdb-error>
+    </div>
+
+    <div class="md-form">
+        <mdb-icon fas icon="phone" class="prefix"></mdb-icon>
+        <input mdbInput mdbValidate type="tel" id="phoneInput"  formControlName="phone" class="form-control" maxlength="20">
+        <label for="phoneInput" class="">Phone</label>
+        <mdb-error *ngIf="f.phone.invalid && (f.phone.dirty || f.phone.touched)">Input invalid</mdb-error>
+    </div>
+
+    <div class="md-form">
+        <mdb-icon far icon="image" class="prefix"></mdb-icon>
+        <input mdbInput mdbValidate type="url" id="urlInput" class="form-control" formControlName="imageUrl" maxlength="250">
+        <label for="urlInput" class="">Image URL</label>
+        <mdb-error *ngIf="f.imageUrl.invalid && (f.imageUrl.dirty || f.imageUrl.touched)">Input invalid</mdb-error>
+    </div>
+  
+    <div class="row">
+        <div class="col-md">
+            <button mdbBtn (click)="programmerDetails()" color="warning" block="true" outline="true" mdbWavesEffect>Cancel</button>
+        </div>
+        <div class="col-md">
+            <button mdbBtn color="secondary" block="true" type="submit" outline="true" mdbWavesEffect>Update</button>
+        </div>
+    </div>
+  </form>
+  

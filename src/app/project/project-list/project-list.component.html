@@ -1,0 +1,39 @@
+<div style="padding-left:25px">
+    <div class="row">
+        <a [routerLink]="['/projects/add']" class="text-dark">
+            <h2 class="ml-3">
+                Add New
+                <mdb-icon fas icon="plus-square" class="green-text ml-1 mr-3 animated pulse"></mdb-icon>
+            </h2> 
+        </a>
+        <a (click)="reloadData()">
+            <h2>
+                Refresh
+                <mdb-icon fas icon="sync" class="green-text ml-1 mr-3 animated rotateIn"></mdb-icon>
+            </h2>
+        </a>
+    </div>
+    <div>
+        <div class="row">
+        <mdb-card *ngFor="let project of projects | async"  style="margin:15px 15px 10px 15px; max-width: 500px; min-width: 400px;" class="hoverable">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>
+                        {{project.name}}
+                        <p style="float:right" *ngIf="project.isCompleted" class="float-right text-success"><mdb-icon fas icon="check"  mdbTooltip="Project completed"></mdb-icon></p>
+                    </h4>    
+                </mdb-card-title>
+
+                <hr>
+
+                <mdb-card-text>
+                    {{project.description}}
+                </mdb-card-text>
+
+                <button (click)="projectDetails(project.projectID)" mdbBtn type="button" color="info" outline="true" mdbWavesEffect style="float:right">Details</button>
+                <button (click)="deleteProject(project.projectID)" mdbBtn type="button" color="danger" outline="true" mdbWavesEffect style="float:right">Delete</button>
+            </mdb-card-body>
+        </mdb-card>
+        </div>
+    </div>
+</div>

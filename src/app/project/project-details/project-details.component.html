@@ -1,0 +1,46 @@
+<div class="jumbotron" style="max-width:1000px; margin: auto">
+    <h1 
+        class="display-6">{{project.name}}
+        <h2 class="display-5" *ngIf="project.isCompleted" class="float-right text-success" ><mdb-icon fas icon="check" mdbTooltip="Project completed"></mdb-icon></h2>
+    </h1>
+
+    <hr class="my-4">
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p style="margin:0px auto 15px auto" class="font-weight-bold">Project description</p>
+                <p>{{project.fullDescription}}</p>
+                <p>Created: {{project.dateCreated | date : "d MMM, y"}}</p>
+            </div>
+
+            <div class="col">
+                <div class="list-group">
+                    <p *ngIf="count > 0; else noProgrammersAssignedBlock" style="margin:0px auto 15px auto" class="font-weight-bold">Assigned programmers: {{count}}</p>
+                    <ng-template #noProgrammersAssignedBlock><p>No programmers assigned</p></ng-template>
+                    
+                    <a *ngFor="let programmer of programmers" (click)="programmerDetails(programmer.programmer.programmerID)" class="list-group-item list-group-item-action flex-column align-items-start" style="padding:5px">
+                        <div class="row">
+                            <div class="avatar col col-auto">
+                                <img src={{programmer.programmer.imageUrl}} class="rounded-circle img-fluid" style="width:50px; height:50px;">
+                            </div>
+                            <div class="col">
+                                <p style="font-size:20px; margin-top: 10px; margin-bottom: 0">{{programmer.programmer.firstName}} {{programmer.programmer.lastName}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a (click)="assignProgrammers()" style="margin:15px auto 0px auto">
+                        <mdb-icon fas icon="plus"></mdb-icon>
+                        Re-assign programmers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <button (click)="gotoList()" mdbBtn type="button" color="primary" outline="true" mdbWavesEffect>To List</button>
+    <button (click)="updateProject()" mdbBtn type="button" color="secondary" outline="true" mdbWavesEffect style="float:right">Update</button>
+    <button (click)="deleteProject()" mdbBtn type="button" color="danger" outline="true" mdbWavesEffect style="float:right">Delete</button>
+</div>
